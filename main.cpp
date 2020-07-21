@@ -1,8 +1,15 @@
 #include "imgui.h"
 #include "imapp.h"
 
+#define CR_HOST CR_UNSAFE
+#include "cr.h"
+
+#include <filesystem>
+
 namespace
 {
+    
+cr_plugin ctx;
 
 } // namespace
 
@@ -32,8 +39,15 @@ int main(int, char**)
         ImGui::StyleColorsDark();
     }
 
+    // Setup cr
+    ctx.userdata = ImGui::GetCurrentContext();
+    cr_plugin_open(ctx, "plugins/" CR_PLUGIN("example"));
+
     // start
     ImApp::StartMainLoop(main_loop);
+
+    // cleanup
+    cr_plugin_close(ctx);
     ImApp::EndApplication();
 
     return 0;
@@ -44,4 +58,5 @@ void main_loop(void* arg)
 {
     IM_UNUSED(arg);
 
+    cr_plugin_update(ctx);
 }

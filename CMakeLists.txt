@@ -31,5 +31,12 @@ endif()
 include(cmake/imapp.cmake)
 target_link_libraries(${PROJECT_NAME} ${IMAPP_LIBRARIES})
 
+# cr
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cr)
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+
 # Example sources
 target_sources(${PROJECT_NAME} PRIVATE main.cpp)
+
+# plugins
+add_subdirectory(plugins)
