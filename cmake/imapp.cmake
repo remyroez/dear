@@ -2,8 +2,15 @@
 set(IMAPP_SOURCE_DIR ${CMAKE_SOURCE_DIR}/thirdparty/imapp)
 set(IMAPP_INCLUDE_DIR ${IMAPP_SOURCE_DIR})
 
+option(IMAPP_BUILD_SHARED "Build shared for imapp" OFF)
+
 # Standalone application starter kit
-add_library(imapp STATIC)
+if(IMAPP_BUILD_SHARED)
+  add_library(imapp SHARED)
+  add_definitions(-fPIC)
+else()
+  add_library(imapp STATIC)
+endif()
 target_include_directories(imapp PUBLIC ${IMAPP_INCLUDE_DIR})
 
 # System options

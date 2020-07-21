@@ -1,6 +1,6 @@
-# imapp-template
+# dear
 
-A CMake template project and example for standalone application using [Dear ImGui](https://github.com/ocornut/imgui) and [imapp](https://github.com/remyroez/imapp).
+Dear ImGui Applet Execution Environment
 
 ## Building
 
@@ -11,7 +11,7 @@ mkdir build
 cd build
 cmake ..
 make
-./imapp_example
+./dear
 ```
 
 ### Select Platfrom/Renderer(+OpenGL Loader)
@@ -52,7 +52,7 @@ The platform is fixed to SDL2 and the renderer is fixed to OpenGL3.
 
 - [Dear ImGui](https://github.com/ocornut/imgui)
 - [SDL2 CMake modules](https://github.com/aminosbh/sdl2-cmake-modules)
-- [imapp](https://github.com/remyroez/imapp) (base repo)
+- [imapp](https://github.com/remyroez/imapp)
 
 ## License
 

@@ -2,8 +2,15 @@
 set(IMGUI_IMPL_RENDERER_INCLUDE_DIR ${IMGUI_EXAMPLE_DIR})
 set(IMGUI_IMPL_RENDERER_SOURCE_DIR ${IMGUI_IMPL_RENDERER_INCLUDE_DIR})
 
+option(IMGUI_IMPL_RENDERER_BUILD_SHARED "Build shared for Dear ImGui Renderer Binding" OFF)
+
 # Renderer Bindings
-add_library(imgui_impl_renderer STATIC)
+if(IMGUI_IMPL_RENDERER_BUILD_SHARED)
+  add_library(imgui_impl_renderer SHARED)
+else()
+  add_library(imgui_impl_renderer STATIC)
+endif()
+
 target_link_libraries(imgui_impl_renderer ${IMGUI_LIBRARIES})
 target_include_directories(imgui_impl_renderer PUBLIC ${IMGUI_IMPL_RENDERER_INCLUDE_DIR})
 
