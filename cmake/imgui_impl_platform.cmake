@@ -2,8 +2,15 @@
 set(IMGUI_IMPL_PLATFORM_INCLUDE_DIR ${IMGUI_EXAMPLE_DIR})
 set(IMGUI_IMPL_PLATFORM_SOURCE_DIR ${IMGUI_IMPL_PLATFORM_INCLUDE_DIR})
 
+option(IMGUI_IMPL_PLATFORM_BUILD_SHARED "Build shared for Dear ImGui Platform Binding" OFF)
+
 # Platform Bindings
-add_library(imgui_impl_platform STATIC)
+if(IMGUI_IMPL_PLATFORM_BUILD_SHARED)
+  add_library(imgui_impl_platform SHARED)
+else()
+  add_library(imgui_impl_platform STATIC)
+endif()
+
 target_link_libraries(imgui_impl_platform ${IMGUI_LIBRARIES})
 target_include_directories(imgui_impl_platform PUBLIC ${IMGUI_IMPL_PLATFORM_INCLUDE_DIR})
 
