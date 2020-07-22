@@ -1,8 +1,8 @@
 #include "imgui.h"
 #include "imapp.h"
 
-#define CR_HOST CR_UNSAFE
-#include "cr.h"
+#define DEAR_HOST CR_UNSAFE
+#include "dear.h"
 
 #include <filesystem>
 #include <vector>
@@ -55,6 +55,8 @@ private:
 
 dear_plugin_manager plugin_manager;
 
+dear::context context;
+
 } // namespace
 
 // Main loop (declaration)
@@ -83,8 +85,11 @@ int main(int, char**)
         ImGui::StyleColorsDark();
     }
 
+    // Setup dear
+    context.imgui_context = ImGui::GetCurrentContext();
+
     // Setup cr
-    plugin_manager.set_userdata(ImGui::GetCurrentContext());
+    plugin_manager.set_userdata(&context);
     plugin_manager.open("plugins/" CR_PLUGIN("example"));
 
     // start
