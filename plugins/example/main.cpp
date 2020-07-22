@@ -4,8 +4,7 @@
 namespace
 {
 
-int step(dear::context *context)
-{
+int step(dear::context *context) {
     ImGui::ShowDemoWindow();
     return 0;
 }

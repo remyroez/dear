@@ -20,7 +20,7 @@ namespace dear {
 
 // global context
 struct context {
-    ImGuiContext *imgui_context = NULL;
+    ImGuiContext *imgui_context = nullptr;
 };
 
 // plugin operation
