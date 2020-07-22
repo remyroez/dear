@@ -7,6 +7,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/sdl2-cmake-
 # Project and Executable
 project(dear C CXX)
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE)
+target_compile_features(dear PRIVATE cxx_std_17)
 
 # Dear ImGui
 include(cmake/imgui.cmake)
@@ -31,5 +32,16 @@ endif()
 include(cmake/imapp.cmake)
 target_link_libraries(${PROJECT_NAME} ${IMAPP_LIBRARIES})
 
-# Example sources
+# cr
+include(cmake/cr.cmake)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CR_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} ${CMAKE_DL_LIBS})
+
+# sources
 target_sources(${PROJECT_NAME} PRIVATE main.cpp)
+
+#
+set(DEAR_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+# plugins
+add_subdirectory(plugins)
